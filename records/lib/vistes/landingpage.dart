@@ -36,28 +36,48 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                child: ListView.builder(
-                  //crea llista
-                  //per veure la llista
-                  itemCount: texts.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      //pinta en cada fila de la llista
-                      leading: Icon(Icons.shopping_cart), //Afegeixo icona
-                      title: Text(texts[index]),
-                    );
-                  },
+                child: ListView(
+                  children: <Widget>[
+                    Card(
+                      child: ListTile(
+                        title: Text(texts[0]),
+                        trailing: Wrap(
+                          spacing: 15,
+                          children: <Widget>[
+                            ElevatedButton(
+                                onPressed: () => {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AfegirNotes()))
+                                    },
+                                child: Icon(Icons.edit)),
+                            ElevatedButton(
+                                onPressed: () => {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AfegirNotes()))
+                                    },
+                                child: Icon(Icons.delete)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   FloatingActionButton(
                       onPressed: () => {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const AfegirNotes()))
+                                    builder: (context) => AfegirNotes()))
                           },
                       child: const Icon(Icons.add))
                 ],
