@@ -1,19 +1,31 @@
+import "dart:ffi";
 import "package:flutter/material.dart";
+import "package:shared_preferences/shared_preferences.dart";
+import "dart:convert";
 
 class LlistaNotes extends ChangeNotifier {
-  final List<Nota> _notes = Nota.creaNotes();
+  final List<Nota> _notes = [];
 
-  void afegeix(Nota nota) {
+  Future<List<Nota>> fetchNotes() async {
+    final prefs = await SharedPreferences.getInstance();
+    final List result = json.decode(prefs.getString("notes").toString());
+    if ('null' == result) {
+      return List.empty();
+    }
+    return result.map((e) => Nota.fromJson(e)).toList();
+  }
+
+  Future<void> afegeixNota(Nota nota) async {
     _notes.add(nota);
     notifyListeners();
   }
 
-  void treu(Nota nota) {
+  Future<void> treuNota(Nota nota) async {
     _notes.remove(nota);
     notifyListeners();
   }
 
-  Nota notaAt(int index) {
+  Future<Nota> notaAt(int index) async {
     return _notes[index];
   }
 }

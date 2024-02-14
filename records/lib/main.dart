@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:records/models/llistanotes.dart';
 import 'package:records/vistes/landingpage.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => LlistaNotes(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:records/models/llistanotes.dart';
 
 class AfegirNotes extends StatelessWidget {
   const AfegirNotes({super.key});
