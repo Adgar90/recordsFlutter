@@ -13,7 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Notes',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.orange,
+          cardColor: Colors.white,
+        ),
       ),
       home: const MyHomePage(title: 'Notes'),
     );
