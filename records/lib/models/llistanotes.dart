@@ -8,10 +8,18 @@ class LlistaNotes extends ChangeNotifier {
   Future<List<Nota>> fetchNotes() async {
     final prefs = await SharedPreferences.getInstance();
     final List result = json.decode(prefs.getString("notes").toString());
+    print(prefs.getString('notes'));
     if ('null' == result) {
-      return List.empty();
+      List<Nota> notesBuides = List.empty();
+      return notesBuides;
     }
+    setLlistaNotes(result);
     return result.map((e) => Nota.fromJson(e)).toList();
+  }
+
+  Future<void> setLlistaNotes(List notes) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('notes', json.encode(notes));
   }
 
   Future<void> afegeixNota(Nota nota) async {
@@ -24,8 +32,12 @@ class LlistaNotes extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<Nota> notaAt(int index) async {
+  Nota notaAt(int index) {
     return _notes[index];
+  }
+
+  int count() {
+    return _notes.length;
   }
 }
 
