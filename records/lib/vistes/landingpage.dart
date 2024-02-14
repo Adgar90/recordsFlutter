@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:records/vistes/afegirnotes.dart';
+import 'package:records/models/llistanotes.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -15,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'Textasdsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsasadsadsadsadsadsaasdsadsadsadsadsadasdsadsadsadsadsadsa'
   ]; //té un text inicial
   int comptador = 0;
-
+  List<Nota> list = List.empty();
   void afegeixText(String text) {
     setState(() {
       //canvia el text afegint un
@@ -50,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 style: ElevatedButton.styleFrom(
                                     elevation: 7.0, shadowColor: Colors.amber),
                                 onPressed: () => {
+                                      list = Nota.creaNotes(),
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
