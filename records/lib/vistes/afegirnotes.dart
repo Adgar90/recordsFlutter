@@ -7,6 +7,7 @@ class AfegirNotes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orange,
         title: const Text('Afegir notes'),
       ),
       body: Center(
