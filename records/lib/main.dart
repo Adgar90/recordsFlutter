@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange),
       ),
-      home: const MyHomePage(title: 'Llista Hola/Adeu'),
+      home: const MyHomePage(title: 'Notes'),
     );
   }
 }
@@ -70,23 +70,39 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      afegeixText('Hola');
-                    },
-                    child: const Text('Hola'),
-                  ),
-                  SizedBox(width: 10, height: 10), //Espai entre botons
-                  ElevatedButton(
-                    onPressed: () {
-                      afegeixText('Adeu');
-                    },
-                    child: const Text('Adeu'),
-                  ),
+                  FloatingActionButton(
+                      onPressed: () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const AfegirNotes()))
+                          },
+                      child: const Icon(Icons.add))
                 ],
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class AfegirNotes extends StatelessWidget {
+  const AfegirNotes({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Afegir notes'),
+      ),
+      body: Center(
+        child: FloatingActionButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Save'),
         ),
       ),
     );
