@@ -11,7 +11,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String> texts = ['Text']; //té un text inicial
+  List<String> texts = [
+    'Textasdsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsasadsadsadsadsadsaasdsadsadsadsadsadasdsadsadsadsadsadsa'
+  ]; //té un text inicial
   int comptador = 0;
 
   void afegeixText(String text) {
@@ -45,6 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           spacing: 15,
                           children: <Widget>[
                             ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    elevation: 7.0, shadowColor: Colors.amber),
                                 onPressed: () => {
                                       Navigator.push(
                                           context,
@@ -54,6 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     },
                                 child: Icon(Icons.edit)),
                             ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    elevation: 7.0, shadowColor: Colors.amber),
                                 onPressed: () => {
                                       Navigator.push(
                                           context,

@@ -27,23 +27,28 @@ class AfegirNotes extends StatelessWidget {
             padding: EdgeInsets.all(16.0),
             child: TextField(
               decoration: InputDecoration(
+                alignLabelWithHint: true,
                 border: OutlineInputBorder(),
                 labelText: 'Contingut',
               ),
               maxLines: 10,
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              FloatingActionButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('Save'),
-              ),
-            ],
-          ),
+          Padding(
+            padding: const EdgeInsets.all(50.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                FloatingActionButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Save'),
+                ),
+              ],
+            ),
+          )
         ],
       )),
     );
