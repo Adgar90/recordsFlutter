@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const MyHomePage(title: 'Notes'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
