@@ -3,17 +3,16 @@ import "package:shared_preferences/shared_preferences.dart";
 import "dart:convert";
 
 class LlistaNotes extends ChangeNotifier {
-  final List<Nota> _notes = [];
+  List<Nota> notes = [];
 
   Future<List<Nota>> fetchNotes() async {
     final prefs = await SharedPreferences.getInstance();
-    final List result = json.decode(prefs.getString("notes").toString());
-    print(prefs.getString('notes'));
-    if ('null' == result) {
+    final String? response = prefs.getString("notes");
+    if (response == 'null') {
       List<Nota> notesBuides = List.empty();
       return notesBuides;
     }
-    setLlistaNotes(result);
+    final List result = json.decode(response.toString());
     return result.map((e) => Nota.fromJson(e)).toList();
   }
 
@@ -23,21 +22,22 @@ class LlistaNotes extends ChangeNotifier {
   }
 
   Future<void> afegeixNota(Nota nota) async {
-    _notes.add(nota);
+    notes.add(nota);
+    setLlistaNotes(notes);
     notifyListeners();
   }
 
   Future<void> treuNota(Nota nota) async {
-    _notes.remove(nota);
+    notes.remove(nota);
     notifyListeners();
   }
 
   Nota notaAt(int index) {
-    return _notes[index];
+    return notes[index];
   }
 
   int count() {
-    return _notes.length;
+    return notes.length;
   }
 }
 

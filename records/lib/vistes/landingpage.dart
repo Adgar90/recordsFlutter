@@ -31,46 +31,50 @@ class _MyHomePageState extends State<MyHomePage> {
                   return FutureBuilder<List<Nota>>(
                       future: value.fetchNotes(),
                       builder: ((context, snapshot) {
-                        return ListView.builder(
-                            itemCount:
-                                snapshot.hasData ? snapshot.data!.length : 0,
-                            itemBuilder: (context, index) {
-                              return Card(
-                                child: ListTile(
-                                  title: Text(snapshot.data![index].titol),
-                                  subtitle: Text(snapshot.data![index].text),
-                                  trailing: Wrap(
-                                    spacing: 15,
-                                    children: <Widget>[
-                                      ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              elevation: 7.0,
-                                              shadowColor: Colors.amber),
-                                          onPressed: () => {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            AfegirNotes()))
-                                              },
-                                          child: Icon(Icons.edit)),
-                                      ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              elevation: 7.0,
-                                              shadowColor: Colors.amber),
-                                          onPressed: () => {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            AfegirNotes()))
-                                              },
-                                          child: Icon(Icons.delete)),
-                                    ],
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (context, index) {
+                                return Card(
+                                  child: ListTile(
+                                    title: Text(snapshot.data![index].titol),
+                                    subtitle: Text(snapshot.data![index].text),
+                                    trailing: Wrap(
+                                      spacing: 15,
+                                      children: <Widget>[
+                                        ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                elevation: 7.0,
+                                                shadowColor: Colors.amber),
+                                            onPressed: () => {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              AfegirNotes()))
+                                                },
+                                            child: Icon(Icons.edit)),
+                                        ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                elevation: 7.0,
+                                                shadowColor: Colors.amber),
+                                            onPressed: () => {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              AfegirNotes()))
+                                                },
+                                            child: Icon(Icons.delete)),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
-                            });
+                                );
+                              });
+                        } else if (snapshot.hasError) {
+                          return Text("No conté data");
+                        }
+                        return Text("Hola mundo");
                       }));
                 }),
               ),
