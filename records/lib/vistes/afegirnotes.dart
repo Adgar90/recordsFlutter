@@ -50,12 +50,10 @@ class AfegirNotes extends StatelessWidget {
                     onPressed: () {
                       model.setLlistaNotes([
                         Nota(
-                            id: null,
                             titol: titolController.text,
                             text: textController.text)
                       ]);
                       model.afegeixNota(Nota(
-                          id: null,
                           titol: titolController.text,
                           text: textController.text));
                       Navigator.pop(context);

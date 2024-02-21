@@ -30,7 +30,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Consumer<LlistaNotes>(builder: (context, value, child) {
                   return FutureBuilder<List<Nota>>(
                       future: value.fetchNotes(),
-                      builder: ((context, snapshot) {
+                      builder: (context, snapshot) {
+                        print(snapshot);
                         if (snapshot.hasData) {
                           return ListView.builder(
                               itemCount: snapshot.data!.length,
@@ -72,11 +73,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 );
                               });
                         } else if (snapshot.hasError) {
-                          print(snapshot.connectionState);
+                          print("error");
                           return Text("No conté data");
                         }
                         return CircularProgressIndicator();
-                      }));
+                      });
                 }),
               ),
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [

@@ -7,13 +7,14 @@ class LlistaNotes extends ChangeNotifier {
 
   Future<List<Nota>> fetchNotes() async {
     final prefs = await SharedPreferences.getInstance();
-    final String? response = prefs.getString("notes");
+    final String response = prefs.getString("notes").toString();
     if (response == 'null') {
       List<Nota> notesBuides = List.empty();
       return notesBuides;
     }
-    final List result = await json.decode(response.toString());
-    return result.map((e) => Nota.fromJson(e)).toList();
+    final List result = json.decode(response);
+    notes = result.map((e) => Nota.fromJson(e)).toList();
+    return notes;
   }
 
   Future<void> setLlistaNotes(List notes) async {
@@ -43,36 +44,36 @@ class LlistaNotes extends ChangeNotifier {
 
 class Nota {
   //static info per variables
-  int? id;
+  //int? id;
   String titol = "";
   String text = "";
 
   Nota({
-    required this.id,
+    //required this.id,
     required this.titol,
     required this.text,
   });
 
   Nota.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    //id = json['id'];
     titol = json['titol'];
     text = json['text'];
   }
 
   String toJson() {
     String data = "{";
-    if (id != null) {
-      data += '"id": $id,';
-    }
-    data += '"titol":"$titol", "text": "$text"}';
+    // if (id != null) {
+    //   data += '"id":$id,';
+    // }
+    data += '"titol":"$titol","text":"$text"}';
     return data;
   }
 
   static List<Nota> creaNotes() {
     List<Nota> list = List.empty(growable: true);
     for (int i = 0; i < 5; i++) {
-      Nota nota = Nota(
-          id: i, titol: 'titol $i', text: 'aquest es el text de la nota $i');
+      Nota nota =
+          Nota(titol: 'titol $i', text: 'aquest es el text de la nota $i');
       list.add(nota);
     }
     return list;
