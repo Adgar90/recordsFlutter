@@ -12,7 +12,7 @@ class LlistaNotes extends ChangeNotifier {
       List<Nota> notesBuides = List.empty();
       return notesBuides;
     }
-    final List result = json.decode(response.toString());
+    final List result = await json.decode(response.toString());
     return result.map((e) => Nota.fromJson(e)).toList();
   }
 

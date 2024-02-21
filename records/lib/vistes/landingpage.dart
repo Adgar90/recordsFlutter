@@ -72,9 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 );
                               });
                         } else if (snapshot.hasError) {
+                          print(snapshot.connectionState);
                           return Text("No conté data");
                         }
-                        return Text("Hola mundo");
+                        return CircularProgressIndicator();
                       }));
                 }),
               ),
