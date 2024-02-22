@@ -7,7 +7,7 @@ class LlistaNotes extends ChangeNotifier {
 
   Future<List<Nota>> fetchNotes() async {
     final prefs = await SharedPreferences.getInstance();
-    final String response = prefs.getString("notes").toString();
+    final String response = prefs.getString('notes').toString();
     if (response == 'null') {
       List<Nota> notesBuides = List.empty();
       return notesBuides;
@@ -19,7 +19,11 @@ class LlistaNotes extends ChangeNotifier {
 
   Future<void> setLlistaNotes(List notes) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('notes', json.encode(notes));
+    var notesString = [];
+    for (var nota in notes) {
+      notesString.add(nota.toMap());
+    }
+    await prefs.setString('notes', json.encode(notesString));
   }
 
   Future<void> afegeixNota(Nota nota) async {
@@ -67,6 +71,10 @@ class Nota {
     // }
     data += '"titol":"$titol","text":"$text"}';
     return data;
+  }
+
+  Map<String, dynamic> toMap() {
+    return {'titol': titol, 'text': text};
   }
 
   static List<Nota> creaNotes() {
