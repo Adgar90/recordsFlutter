@@ -60,11 +60,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 elevation: 7.0,
                                                 shadowColor: Colors.amber),
                                             onPressed: () => {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              AfegirNotes()))
+                                                  value.treuNota(Nota(
+                                                      titol: snapshot
+                                                          .data![index].titol,
+                                                      text: snapshot
+                                                          .data![index].text))
                                                 },
                                             child: Icon(Icons.delete)),
                                       ],
