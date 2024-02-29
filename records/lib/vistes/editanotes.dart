@@ -3,18 +3,22 @@ import 'package:provider/provider.dart';
 import 'package:records/models/llistanotes.dart';
 
 // ignore: must_be_immutable
-class AfegirNotes extends StatelessWidget {
-  AfegirNotes({super.key});
+class EditaNotes extends StatelessWidget {
+  EditaNotes({super.key, required this.nota, required this.index});
   TextEditingController titolController = TextEditingController();
   TextEditingController textController = TextEditingController();
+  final Nota nota;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        title: const Text('Afegeix nota'),
+        title: const Text('Edita nota'),
       ),
       body: Consumer<LlistaNotes>(builder: (context, model, _) {
+        titolController.text = nota.titol;
+        textController.text = nota.text;
         return Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -24,7 +28,7 @@ class AfegirNotes extends StatelessWidget {
                 controller: titolController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Títol",
+                  labelText: 'Títol',
                 ),
               ),
             ),
@@ -35,7 +39,7 @@ class AfegirNotes extends StatelessWidget {
                 decoration: const InputDecoration(
                   alignLabelWithHint: true,
                   border: OutlineInputBorder(),
-                  labelText: 'Contingut',
+                  labelText: 'Text',
                 ),
                 maxLines: 10,
               ),
@@ -48,9 +52,11 @@ class AfegirNotes extends StatelessWidget {
                 children: [
                   FloatingActionButton(
                     onPressed: () {
-                      model.afegeixNota(Nota(
-                          titol: titolController.text,
-                          text: textController.text));
+                      model.editaNota(
+                          Nota(
+                              titol: titolController.text,
+                              text: textController.text),
+                          index);
                       Navigator.pop(context);
                     },
                     child: const Text('Save'),

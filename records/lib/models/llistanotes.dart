@@ -32,6 +32,15 @@ class LlistaNotes extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> editaNota(Nota nota, index) async {
+    if (nota != notaAt(index)) {
+      notaAt(index).titol = nota.titol;
+      notaAt(index).text = nota.text;
+      setLlistaNotes(notes);
+      notifyListeners();
+    }
+  }
+
   Future<void> treuNota(int index) async {
     notes.remove(notaAt(index));
     setLlistaNotes(notes);

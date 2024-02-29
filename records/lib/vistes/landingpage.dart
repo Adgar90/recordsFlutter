@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:records/vistes/afegirnotes.dart';
+import 'package:records/vistes/editanotes.dart';
 import 'package:records/models/llistanotes.dart';
 import 'package:provider/provider.dart';
 
@@ -52,15 +53,21 @@ class _MyHomePageState extends State<MyHomePage> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              AfegirNotes()))
+                                                              EditaNotes(
+                                                                  nota: snapshot
+                                                                          .data![
+                                                                      index],
+                                                                  index:
+                                                                      index)))
                                                 },
                                             child: Icon(Icons.edit)),
                                         ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                                 elevation: 7.0,
                                                 shadowColor: Colors.amber),
-                                            onPressed: () =>
-                                                {value.treuNota(index)},
+                                            onPressed: () => {
+                                                  value.treuNota(index),
+                                                },
                                             child: Icon(Icons.delete)),
                                       ],
                                     ),
@@ -68,7 +75,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                 );
                               });
                         } else if (snapshot.hasError) {
-                          print("error");
                           return Text("No conté data");
                         }
                         return CircularProgressIndicator();
