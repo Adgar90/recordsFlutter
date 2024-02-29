@@ -32,17 +32,10 @@ class LlistaNotes extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> treuNota(Nota nota) async {
-    Nota? nota_a_esborrar;
-    notes.forEach((element) {
-      if (nota.titol == element.titol)
-        nota_a_esborrar =
-            element; // al ser instancies encara que siguin iguals no son identiques
-    });
-    if (nota_a_esborrar != null) {
-      notes.remove(nota_a_esborrar);
-      notifyListeners();
-    }
+  Future<void> treuNota(int index) async {
+    notes.remove(notaAt(index));
+    setLlistaNotes(notes);
+    notifyListeners();
   }
 
   Nota notaAt(int index) {

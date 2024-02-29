@@ -59,13 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                             style: ElevatedButton.styleFrom(
                                                 elevation: 7.0,
                                                 shadowColor: Colors.amber),
-                                            onPressed: () => {
-                                                  value.treuNota(Nota(
-                                                      titol: snapshot
-                                                          .data![index].titol,
-                                                      text: snapshot
-                                                          .data![index].text))
-                                                },
+                                            onPressed: () =>
+                                                {value.treuNota(index)},
                                             child: Icon(Icons.delete)),
                                       ],
                                     ),
