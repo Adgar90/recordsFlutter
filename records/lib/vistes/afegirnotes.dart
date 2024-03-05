@@ -23,9 +23,10 @@ class AfegirNotes extends StatelessWidget {
               child: TextField(
                 controller: titolController,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Títol",
-                ),
+                    border: InputBorder.none,
+                    labelText: "Títol",
+                    filled: true,
+                    fillColor: Colors.white38),
               ),
             ),
             Padding(
@@ -33,10 +34,11 @@ class AfegirNotes extends StatelessWidget {
               child: TextField(
                 controller: textController,
                 decoration: const InputDecoration(
-                  alignLabelWithHint: true,
-                  border: OutlineInputBorder(),
-                  labelText: 'Contingut',
-                ),
+                    alignLabelWithHint: true,
+                    border: InputBorder.none,
+                    labelText: 'Contingut',
+                    filled: true,
+                    fillColor: Colors.white38),
                 maxLines: 10,
               ),
             ),

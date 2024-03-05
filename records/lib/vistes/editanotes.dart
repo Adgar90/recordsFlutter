@@ -27,8 +27,10 @@ class EditaNotes extends StatelessWidget {
               child: TextField(
                 controller: titolController,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: InputBorder.none,
                   labelText: 'Títol',
+                  filled: true,
+                  fillColor: Colors.white38,
                 ),
               ),
             ),
@@ -37,10 +39,11 @@ class EditaNotes extends StatelessWidget {
               child: TextField(
                 controller: textController,
                 decoration: const InputDecoration(
-                  alignLabelWithHint: true,
-                  border: OutlineInputBorder(),
-                  labelText: 'Text',
-                ),
+                    alignLabelWithHint: true,
+                    border: InputBorder.none,
+                    labelText: 'Text',
+                    filled: true,
+                    fillColor: Colors.white38),
                 maxLines: 10,
               ),
             ),
